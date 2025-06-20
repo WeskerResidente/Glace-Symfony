@@ -19,12 +19,23 @@
         {% block content %}
                 <nav>
                     <ul class="navbar-main">
-                        <li ><a href="{{ path("app_home") }}" class="listes">Accueil</a></li>
-                        <li><a href="{{ path("app_listes_des_glaces") }}">Listes des glaces</a></li>
-                        <li><a href="{{path("app_ajout_glace")}}">Ajouter une glace</a></li>
-                        <li><a href="">Autres</a></li>
+                        <li><a href="{{ path('app_home') }}" class="listes">Accueil</a></li>
+                        <li><a href="{{ path('app_listes_des_glaces') }}">Listes des glaces</a></li>
+                        <li><a href="{{ path('app_ajout_glace') }}">Ajouter une glace</a></li>
+
+                        {% if app.user %}
+                        <li class="logout-item">
+                            <form action="{{ path('app_logout') }}" method="post" class="logout-form">
+                                <button type="submit">🚪 Déconnexion</button>
+                            </form>
+                        </li>
+                        {% else %}
+                            <li><a href="{{ path('app_sign') }}"> Inscription</a></li>
+                            <li><a href="{{ path('app_login') }}"> Connexion</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
+
         {% endblock %}
         {% block body %}
 

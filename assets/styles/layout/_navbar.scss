@@ -53,3 +53,23 @@
     }
   }
 }
+.logout-form {
+  margin: 0;
+  padding: 0;
+}
+
+.logout-form button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logout-form button:hover {
+  color: wheat;
+  text-shadow: 0 0 5px;
+}
