@@ -1,0 +1,31 @@
+@use "../base/variables" as v;
+
+ul.glaces {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0;
+  list-style: none;
+
+  li {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    color: v.$white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+
+    strong {
+      font-size: 1.2rem;
+      color: #ffd700;
+    }
+  }
+}
+
+.emoji-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 6px;
+  filter: drop-shadow(0 0 2px #000);
+}

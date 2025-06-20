@@ -1,0 +1,13 @@
+@use "./variables" as v;
+
+body {
+  background-color: v.$blue-dark;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
