@@ -2,9 +2,18 @@
 
 {% block title %}Hello AjoutGlaceController!{% endblock %}
 
+
+
+
 {% block body %}
+    <h1>Liste des glaces</h1>
+    {# BLOCK POUR LE FORMULAIRE #}
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <button type="submit">Ajout</button>
     {{ form_end(form) }}
+    {# BLOCK POUR LE MESSAGE #}
+    {% for message in app.flashes('success') %}
+            {{ message }}
+    {% endfor %}
 {% endblock %}

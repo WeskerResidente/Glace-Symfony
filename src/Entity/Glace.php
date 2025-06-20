@@ -16,6 +16,12 @@ class Glace
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ingredientSpecial = null;
+
+    #[ORM\ManyToOne]
+    private ?Cornet $Cornet = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +35,30 @@ class Glace
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getIngredientSpecial(): ?string
+    {
+        return $this->ingredientSpecial;
+    }
+
+    public function setIngredientSpecial(string $ingredientSpecial): static
+    {
+        $this->ingredientSpecial = $ingredientSpecial;
+
+        return $this;
+    }
+
+    public function getCornet(): ?Cornet
+    {
+        return $this->Cornet;
+    }
+
+    public function setCornet(?Cornet $Cornet): static
+    {
+        $this->Cornet = $Cornet;
 
         return $this;
     }

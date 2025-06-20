@@ -26,6 +26,12 @@ final class AjoutGlaceController extends AbstractController
             $entityManager->persist($AjoutGlace);
 
             $entityManager->flush();
+            
+
+            //AFFICHE UN MESSAGE QUAND FORMULAIRE REMPLI ET ENVOYE
+            $this->addFlash('success', 'La glace a bien été enregistrée !');
+            // PERMET LA MISE A ZERO DU FORMULAIRE
+            return $this->redirectToRoute('app_ajout_glace');
         }
         return $this->render('ajout_glace/ajout_glace.html.twig', [
                 'form' => $form->createView()

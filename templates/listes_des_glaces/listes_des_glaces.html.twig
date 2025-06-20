@@ -1,14 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ListesDesGlacesController!{% endblock %}
+{% block title %}Liste des glaces{% endblock %}
 
 {% block body %}
     <h1>Liste des glaces</h1>
 
-    <ul>
+    <ul class="glaces">
         {% for glace in glaces %}
             <li>
                 <strong>{{ glace.nom }}</strong><br>
+                Type de cône : {{ glace.cornet.type }}<br>
+                Ingrédient spécial : {{ glace.ingredientSpecial ?? 'Aucun' }}
+
+                <div class="btn-group">
+                    <a href="{{ path('app_modifier_glace', { id: glace.id }) }}" class="btn-modifier">
+                        <img src="{{ asset('img/tardis-png-icon-16.jpg') }}" alt="TARDIS" class="emoji-icon">
+                        Modifier
+                    </a>
+
+                    <div class="delete-button-wrapper">
+                        <form method="POST"
+                            action="{{ path('delete_glace', { id: glace.id }) }}"
+                            onsubmit="return confirm('Supprimer {{ glace.nom }} ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ glace.id) }}">
+                            <button type="submit" class="btn-supprimer">🗑 Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+
             </li>
         {% else %}
             <li>Aucune glace trouvée.</li>
