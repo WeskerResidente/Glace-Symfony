@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CornetRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: CornetRepository::class)]
 class Cornet
 {
