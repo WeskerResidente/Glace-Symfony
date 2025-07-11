@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\DTO\PercentageInputDto;
+use App\Dto\PercentageInputDto;
 use App\Service\PercentageCalculatorService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,15 +17,20 @@ final class HomeController extends AbstractController
         $euro = $request->query->get('euro');
         $dollar = $request->query->get('dollar');
 
+        $dto = new PercentageInputDto(
+            $euro !== null && is_numeric($euro) ? floatval($euro) : null,
+            $dollar !== null && is_numeric($dollar) ? floatval($dollar) : null
+        );
+
         $resultEuroToDollar = null;
         $resultDollarToEuro = null;
 
-                if ($euro !== null && is_numeric($euro)) {
-            $resultEuroToDollar = $converter->convertEuroToDollar(floatval($euro));
+        if ($dto->amountEuro !== null) {
+            $resultEuroToDollar = $converter->convertEuroToDollar($dto->amountEuro);
         }
 
-        if ($dollar !== null && is_numeric($dollar)) {
-            $resultDollarToEuro = $converter->convertDollarToEuro(floatval($dollar));
+        if ($dto->amountDollar !== null) {
+            $resultDollarToEuro = $converter->convertDollarToEuro($dto->amountDollar);
         }
 
         return $this->render('home/home.html.twig', [
