@@ -1,6 +1,7 @@
 @use "base/variables" as v;
 @use "base/global";
 @use "base/typography";
+@use "base/img";
 
 @use "layout/navbar";
 @use "layout/forms";
@@ -10,3 +11,4 @@
 @use "components/glaces";
 @use "components/dropdown";
 @use "components/alerts";
+@use 'components/homes';

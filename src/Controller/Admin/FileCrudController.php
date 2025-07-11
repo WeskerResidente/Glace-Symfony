@@ -2,21 +2,20 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Glace;
+use Vich\UploaderBundle\Entity\File;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-
-class GlaceAdminCrudController extends AbstractCrudController
+class FileCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Glace::class;
+        return File::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -25,5 +24,5 @@ class GlaceAdminCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
-    
+
 }

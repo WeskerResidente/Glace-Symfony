@@ -1,0 +1,79 @@
+// assets/styles/components/_home.scss
+
+.home-page {
+  background-color: #2e2ee6; // Bleu magique
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 2rem;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    a {
+      background-color: #ff69b4;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background-color: #ff1493;
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+.home-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  .btn-home {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+    &.primary {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      color: #300026;
+    }
+
+    &.secondary {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      color: #003366;
+    }
+
+    &:hover {
+      transform: scale(1.07);
+      filter: brightness(1.1);
+    }
+  }
+}

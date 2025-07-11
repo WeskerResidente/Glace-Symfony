@@ -1,8 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Bienvenue chez GlaceMagique 🍦{% endblock %}
 
 {% block body %}
+    <div class="home-page">
+        <h1>Bienvenue chez <span class="highlight">GlaceMagique</span> 🍨</h1>
+        <p>Créez, modifiez et savourez vos glaces personnalisées !</p>
+        <div class="home-actions">
+            <a href="{{ path('app_ajout_glace') }}" class="btn-home">Créer une glace 🍧</a>
+            <a href="{{ path('app_listes_des_glaces') }}" class="btn-home secondary">Voir les glaces 🍦</a>
+        </div>
+    </div>
+    <h2>Convertisseur Euros → Dollars 💶➡️💵</h2>
+    <form method="get">
+        <label for="euro">Montant en € :</label>
+        <input type="number" step="any" name="euro" id="euro" value="{{ app.request.get('euro') ?? '' }}">
+        <button type="submit">Convertir en $</button>
+    </form>
 
-    <h1>test</h1>
+    {% if resultEuroToDollar %}
+        <div class="result-container" style="margin-top: 1rem; padding: 1rem; background: #f0f0f0; border-radius: 8px;">
+            <p><strong>Montant en € :</strong> {{ resultEuroToDollar.amountEuro|number_format(2, '.', ' ') }} €</p>
+            <p><strong>Montant en $ :</strong> {{ resultEuroToDollar.amountDollar|number_format(2, '.', ' ') }} $</p>
+        </div>
+    {% endif %}
+
+    <hr>
+
+    <h2>Convertisseur Dollars → Euros 💵➡️💶</h2>
+    <form method="get">
+        <label for="dollar">Montant en $ :</label>
+        <input type="number" step="any" name="dollar" id="dollar" value="{{ app.request.get('dollar') ?? '' }}">
+        <button type="submit">Convertir en €</button>
+    </form>
+
+{% if resultDollarToEuro %}
+    <div class="result-container" style="margin-top: 1rem; padding: 1rem; background: #f0f0f0; border-radius: 8px;">
+        <p><strong>Montant en $ :</strong> {{ resultDollarToEuro.amountDollar|number_format(2, '.', ' ') }} $</p>
+        <p><strong>Montant en € :</strong> {{ resultDollarToEuro.amountEuro|number_format(2, '.', ' ') }} €</p>
+    </div>
+{% endif %}
+
 {% endblock %}

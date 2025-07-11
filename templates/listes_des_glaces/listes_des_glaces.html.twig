@@ -1,36 +1,53 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Liste des glaces{% endblock %}
 
 {% block body %}
-    <h1>Liste des glaces</h1>
+  <h1 class="text-glaces">🍨 Nos Glaces Personnalisées</h1>
 
-    <ul class="glaces">
-        {% for glace in glaces %}
-            <li>
-                <strong>{{ glace.nom }}</strong><br>
-                Type de cône : {{ glace.cornet.type }}<br>
-                Ingrédient spécial : {{ glace.ingredientSpecial ?? 'Aucun' }}
+  <ul class="glaces">
+    {% for glace in glaces %}
+      <li>
+        <strong>{{ glace.nom }}</strong>
 
-                <div class="btn-group">
-                    <a href="{{ path('app_modifier_glace', { id: glace.id }) }}" class="btn-modifier">
-                        <img src="{{ asset('img/tardis-png-icon-16.jpg') }}" alt="TARDIS" class="emoji-icon">
-                        Modifier
-                    </a>
+        <div class="details">
+          Type de cône : {{ glace.cornet.type }}<br>
+          Ingrédient spécial : {{ glace.ingredientSpecial ?? 'Aucun' }}<br>
+          Toppings :
+          {% if glace.toppings is not empty %}
+            <ul class="toppings-list">
+              {% for topping in glace.toppings %}
+                <li>{{ topping.nom }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            Aucun topping
+          {% endif %}
+        </div>
 
-                    <div class="delete-button-wrapper">
-                        <form method="POST"
-                            action="{{ path('delete_glace', { id: glace.id }) }}"
-                            onsubmit="return confirm('Supprimer {{ glace.nom }} ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ glace.id) }}">
-                            <button type="submit" class="btn-supprimer">🗑 Supprimer</button>
-                        </form>
-                    </div>
-                </div>
+        {# ➤ Regroupe les boutons + image dans un wrapper pour l'alignement horizontal #}
+        <div class="glace-content">
+          <div class="btn-group">
+            <a href="{{ path('app_modifier_glace', { id: glace.id }) }}" class="btn-modifier">
+              <img src="{{ asset('img/tardis-png-icon-16.jpg') }}" alt="modifier" class="emoji-icon"> Modifier
+            </a>
 
-            </li>
-        {% else %}
-            <li>Aucune glace trouvée.</li>
-        {% endfor %}
-    </ul>
+            <form method="POST" action="{{ path('delete_glace', { id: glace.id }) }}" onsubmit="return confirm('Supprimer {{ glace.nom }} ?');">
+              <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ glace.id) }}">
+              <button type="submit" class="btn-supprimer">🗑 Supprimer</button>
+            </form>
+          </div>
+
+          <div class="img">
+            {% if glace.imageName %}
+              <img src="{{ asset('uploads/images/' ~ glace.imageName) }}" alt="{{ glace.nom }}">
+            {% else %}
+              <p>Aucune image</p>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% else %}
+      <li>Aucune glace trouvée.</li>
+    {% endfor %}
+  </ul>
 {% endblock %}

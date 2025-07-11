@@ -15,9 +15,8 @@ final class ListesDesGlacesController extends AbstractController
     {
 
         $glaces = $repository->findAll();
-                        dd($glaces);
         return $this->render('listes_des_glaces/listes_des_glaces.html.twig', [
-            'glaces' => $glaces
+            'glaces' => $glaces,
         ]);
     }
 }
